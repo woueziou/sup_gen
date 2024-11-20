@@ -1,7 +1,10 @@
 name: sup_gen_model
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+homepage: https://github.com/woueziou/sup_gen.git
+repository: https://github.com/woueziou/sup_gen.git
+documentation: https://github.com/woueziou/sup_gen.git
+issue_tracker: https://github.com/woueziou/sup_gen/issues
 
 environment:
   sdk: ^3.5.3
