@@ -1,4 +1,4 @@
-
+//################################################## copied from https://github.com/FlutterGen/flutter_gen ##################################################
 /// Exposes the [mergeMap] function, which... merges Maps.
 _copyValues<K, V>(
     Map<K, V> from, Map<K, V> to, bool recursive, bool acceptNull) {
@@ -32,9 +32,11 @@ Map<K, V> mergeMap<K, V>(Iterable<Map<K, V>?> maps,
   });
   return result;
 }
+
+
 // file writer typedef
 typedef FileWriter = void Function(String contents, String path);
-
+// #######################################################################################################################
 
 String snakeToPascalCase(String text) {
   return text.split('_').map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase()).join();
