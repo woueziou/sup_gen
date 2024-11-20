@@ -1,0 +1,32 @@
+# targets:
+#   $default:
+#     builders:
+#      # A PartBuilder or LibraryBuilder
+#       library_gen|clsBuilder:
+#         generate_for:
+#           - lib/**/*.dart
+#         options:
+#           output: 'lib/models/generated'
+       
+# builders:
+#   clsBuilder:
+#     import: 'package:library_gen/library_gen.dart'
+#     builder_factories: ['clsBuilder']
+#     build_extensions: {'{{}}.dart': ['/lib/{{}}.cls.dart']}
+#     runs_before: [source_gen|combining_builder]
+#     auto_apply: dependents
+#     build_to: source
+    
+targets:
+  $default:
+    builders:
+      sup_gen_runner:
+        enabled: true
+
+builders:
+  sup_gen_runner:
+    import: 'package:sup_gen_runner/sup_gen_runner.dart'
+    builder_factories: ['build']
+    build_extensions: { '$package$': ['.gen.dart'] }
+    auto_apply: dependents
+    build_to: source

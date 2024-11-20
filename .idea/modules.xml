@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/packages/copy_generator/melos_copy_generator.iml" filepath="$PROJECT_DIR$/packages/copy_generator/melos_copy_generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/project_test/melos_project_test.iml" filepath="$PROJECT_DIR$/apps/project_test/melos_project_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/sup_gen_models/melos_sup_gen_model.iml" filepath="$PROJECT_DIR$/packages/sup_gen_models/melos_sup_gen_model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/sup_gen_runner/melos_sup_gen_runner.iml" filepath="$PROJECT_DIR$/packages/sup_gen_runner/melos_sup_gen_runner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/sup_gen_sqler/melos_sup_gen_sqler.iml" filepath="$PROJECT_DIR$/packages/sup_gen_sqler/melos_sup_gen_sqler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_sup_gen_repository.iml" filepath="$PROJECT_DIR$/melos_sup_gen_repository.iml" />
+    </modules>
+  </component>
+</project>
