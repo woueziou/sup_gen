@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:build/src/builder/build_step.dart';
-import 'package:sup_gen_runner/src/annotations/cls_gen.dart';
+import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:sup_gen_runner/src/annotations/cls_gen.dart';
 
 // class ClassGenerator extends GeneratorForAnnotation<ClsGen> {
 //   @override

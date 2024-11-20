@@ -22,8 +22,7 @@ dependencies:
   path: ^1.9.0
   crypto: ^3.0.6
   dart_style: ^2.3.7
-  sup_gen_sqler:
-    path: ../sup_gen_sqler
+  sup_gen_sqler: any
   # path: ^1.8.0
 
 dev_dependencies:

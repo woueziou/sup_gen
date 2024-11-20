@@ -1,5 +1,9 @@
 name: sup_gen
 description: A starting point for Dart libraries or applications.
+homepage: https://github.com/woueziou/sup_gen.git
+repository: https://github.com/woueziou/sup_gen.git
+documentation: https://github.com/woueziou/sup_gen.git
+issue_tracker: https://github.com/woueziou/sup_gen/issues
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
@@ -8,7 +12,8 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  path: ^1.8.0
+  build: ^2.4.1
+
 
 dev_dependencies:
   lints: ^4.0.0
