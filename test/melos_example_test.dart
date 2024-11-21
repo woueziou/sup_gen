@@ -1,4 +1,4 @@
-import '../lib/melos_example.dart';
+import 'package:sup_gen/melos_example.dart';
 import 'package:test/test.dart';
 
 void main() {

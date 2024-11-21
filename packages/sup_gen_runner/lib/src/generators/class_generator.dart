@@ -3,15 +3,6 @@ import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:sup_gen_runner/src/annotations/cls_gen.dart';
 
-// class ClassGenerator extends GeneratorForAnnotation<ClsGen> {
-//   @override
-//   generateForAnnotatedElement(
-//       Element element, ConstantReader annotation, BuildStep buildStep) {
-//     // TODO: implement generateForAnnotatedElement
-//     return '';
-//   }
-// }
-
 class ClassGenerator extends Generator {
   @override
   Future<String> generate(LibraryReader library, BuildStep buildStep) async {

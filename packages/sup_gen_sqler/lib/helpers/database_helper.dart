@@ -146,9 +146,9 @@ ORDER BY
 
     final List<TableModel> tableModels = [];
     for (var table in tables) {
-      // TODO: Add definition to generation
+     
       final tableDefinition = await getTableDefinition(table: table);
-      // final model = TableModel(name: table, properties: []);
+      
       final model = TableModel(name: table, properties: tableDefinition);
       tableModels.add(model);
     }
