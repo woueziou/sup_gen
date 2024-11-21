@@ -1,5 +1,5 @@
 name: sup_gen_sqler
-description: A starting point for Dart libraries or applications.
+description: Package contains sqls and database handler for sup_gen_runner
 version: 1.0.0
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git

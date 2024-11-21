@@ -15,14 +15,14 @@ dependencies:
   build: ^2.4.1
   analyzer: '>=5.2.0 <7.0.0'  
   source_gen: ^1.4.0
-  sup_gen_model: any
+  sup_gen_model: ^1.0.0
   yaml: ^3.1.2
   collection: ^1.18.0
   glob: ^2.1.2
   path: ^1.9.0
   crypto: ^3.0.6
   dart_style: ^2.3.7
-  sup_gen_sqler: any
+  sup_gen_sqler: ^1.0.0
   # path: ^1.8.0
 
 dev_dependencies:
