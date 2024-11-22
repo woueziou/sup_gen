@@ -69,9 +69,6 @@ You will see in your output folder some files:
 
 ## Roadmap
 
-- Additional browser support
-
-- Add more integrations
 
 [x] Setup project 
 
