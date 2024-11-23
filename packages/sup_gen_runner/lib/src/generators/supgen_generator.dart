@@ -72,7 +72,9 @@ class SupgenGenerator {
       // await writer(tableGenerated, tablePath);
 
       stdout.writeln('[PostgreGen] Finished generating.');
-      exit(0);
+      // exit(0);
+      return;
+
     } catch (e) {
       stderr.writeln('[PostgreGen] Error: $e');
       exit(1);

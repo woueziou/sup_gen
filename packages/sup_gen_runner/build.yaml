@@ -45,4 +45,7 @@ builders:
     build_extensions: { '$package$': ['.gen.dart'] }
     auto_apply: dependents
     build_to: source
+    runs_before:
+      - "json_serializable|json_serializable" # Run before the JsonSerializable generator
+      - "freezed|freezed" # Run before the Freezed generator
     

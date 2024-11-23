@@ -1,4 +1,3 @@
-import 'package:sup_gen_sqler/sqler.dart';
 import 'package:test/test.dart';
 
 void main() {
