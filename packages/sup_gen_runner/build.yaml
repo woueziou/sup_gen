@@ -20,13 +20,29 @@
 targets:
   $default:
     builders:
+      json_serializable:
+        options:
+          any_map: true
+          checked: true
+          create_factory: true
+          create_to_json: false
+          disallow_unrecognized_keys: false
+          explicit_to_json: false
+          field_rename: none
+          generic_argument_factories: false
+          ignore_unannotated: false
+          include_if_null: true
+          # runs_before:
+          # - sup_gen_runner
       sup_gen_runner:
         enabled: true
 
 builders:
+
   sup_gen_runner:
     import: 'package:sup_gen_runner/sup_gen_runner.dart'
     builder_factories: ['build']
     build_extensions: { '$package$': ['.gen.dart'] }
     auto_apply: dependents
     build_to: source
+    

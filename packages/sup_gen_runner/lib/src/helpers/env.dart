@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:sup_gen_model/database_option.dart';
 
+
 DatabaseOption loadDbOptionFromEnvFile({required File envFile}) {
   if (!envFile.existsSync()) {
     throw Exception('The .env file does not exist');

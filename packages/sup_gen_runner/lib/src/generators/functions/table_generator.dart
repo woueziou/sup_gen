@@ -7,36 +7,18 @@ String generateTable(
     {required List<TableModel> tableList, required DartFormatter formatter}) {
   final buffer = StringBuffer();
   buffer.writeln('// ignore_for_file: camel_case_types');
+  buffer.writeln("import 'dart:convert'; \n");
   buffer.writeln("import 'supabase_enums.gen.dart'; \n");
   for (var table in tableList) {
     if (table.hasValidName) {
-      buffer.writeln('class ${table.className} {');
-
-      // Generate constructors
-      buffer.writeln('  ${table.className}({');
-      for (final prop in table.properties) {
-        buffer.writeln(
-            ' ${prop.isNullable ? "" : "required"}   this.${prop.dartName},');
-      }
-      buffer.writeln('});');
-
-      // Genereate properties
-      for (final prop in table.properties) {
-        buffer.writeln(prop.field);
-      }
-
-      buffer.writeln(table.fromJsonFunction);
-      buffer.writeln('}');
-      buffer.writeCharCode("\n".codeUnitAt(0));
-
+      buffer.writeln('${table.createClass()}\n');
       stdout.writeln('Generated Table: ${table.name}');
     } else {
       stdout.writeln(
           '[SupGen] ${table.name} cannot be generated | Check table name');
     }
   }
-  // final buffResult = buffer.toString();
-  // stdout.writeln(buffResult);
+
   return formatter.format(buffer.toString());
 }
 

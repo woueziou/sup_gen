@@ -1,9 +1,8 @@
-import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sup_gen_model/extensions/string_extension.dart';
-import 'dart:io';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class TableModel {
@@ -36,8 +35,8 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
 
   String createClass() {
     final buffer = StringBuffer();
-    buffer.writeln('// ignore_for_file: camel_case_types');
-    buffer.writeln("import 'supabase_enums.gen.dart'; \n");
+    // buffer.writeln('// ignore_for_file: camel_case_types');
+    // buffer.writeln("import 'supabase_enums.gen.dart'; \n");
     // for (var table in tableList) {
     if (hasValidName) {
       buffer.writeln('class $className {');

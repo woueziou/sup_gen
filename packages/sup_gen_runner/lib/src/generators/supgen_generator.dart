@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart';
 import 'package:sup_gen_model/database_option.dart';
+import 'package:sup_gen_runner/src/database_helper/database_helper.dart';
 import 'package:sup_gen_runner/src/generators/functions/table_generator.dart';
 import 'package:sup_gen_runner/src/helpers/config.dart';
 import 'package:sup_gen_runner/src/helpers/utils.dart';
-import 'package:sup_gen_sqler/helpers/database_helper.dart';
 
 class SupgenGenerator {
   final File pubspecFile;
@@ -27,48 +27,54 @@ class SupgenGenerator {
       final output = config.pubspec.supGenOption.output;
       Future<void> defaultWriter(String contents, String path) async {
         final file = File(path);
-        if (!file.existsSync()) {
-          file.createSync(recursive: true);
+        if (!(await file.exists())) {
+          await file.create(recursive: true);
         }
-        file.writeAsString(contents);
+        await file.writeAsString(contents);
       }
 
       writer ??= defaultWriter;
 
       final absoluteOutput =
           Directory(normalize(join(pubspecFile.parent.path, output)));
-      if (!absoluteOutput.existsSync()) {
-        absoluteOutput.createSync(recursive: true);
+      if (!(await absoluteOutput.exists())) {
+        await absoluteOutput.create(recursive: true);
       }
 
       final dbHelper = DatabaseHelper(option: dbOption);
       // get items from server
       final enumList = await dbHelper.retrieveEnumsFromServer();
-      final tables = [
-        ...(await dbHelper.retrieveTableFromServer()),
-        ...(await dbHelper.retrieveViewsFromServer()),
-      ];
+      final tables = await dbHelper.retrieveTableFromServer();
+      final views = await dbHelper.retrieveViewsFromServer();
+
+      tables.addAll(views);
 
       final enumPath =
           normalize(join(pubspecFile.parent.path, output, outputEnums));
 
       final enumGeneratedClass =
           generateEnums(enums: enumList, formatter: formatter);
-      await writer(enumGeneratedClass, enumPath);
 
       final tablePath = normalize(
           join(pubspecFile.parent.path, output, outputTableFilesName));
-      final generated = generateTable(
+
+      final tableGenerated = generateTable(
         tableList: tables,
         formatter: formatter,
       );
+      await Future.wait([
+        writer(enumGeneratedClass, enumPath),
+        writer(tableGenerated, tablePath),
+      ]);
 
-      await writer(generated, tablePath);
+      // stdout.write("${result.length} files generated\n");
+      // await writer(enumGeneratedClass, enumPath);
+      // await writer(tableGenerated, tablePath);
 
       stdout.writeln('[PostgreGen] Finished generating.');
-
       exit(0);
     } catch (e) {
+      stderr.writeln('[PostgreGen] Error: $e');
       exit(1);
     }
   }
