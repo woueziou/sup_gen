@@ -79,17 +79,17 @@ You will see in your output folder some files:
 
 [x] Write Colum type adapters 
 
-[ ] handle Enums mapping
-
 [ ] handle Table mapping
+
+[ ] handle Enums mapping
 
 [ ] Handle views mapping
 
 [ ] handle Enum reverse target : get enum value string name
 
-[ ] Setup test cases
-
 [ ] Handle Edge functions mapping
+
+[ ] Setup test cases
 
 [ ] Handle RPC mapping
 

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -12,6 +13,37 @@ class TableModel {
 
   bool get hasValidName => isValidDartClassName(name);
   String get className => snakeToPascalCase(name);
+  factory TableModel.fromJson(Map<String, dynamic> json) {
+    // final ex= Map<String,dynamic>.from("json");
+    return TableModel(
+      name: json['name'],
+      properties: json['properties'],
+    );
+  }
+  String get fromJsonFunction {
+    final buffer = StringBuffer();
+    buffer.writeln("factory $className.fromJson(Map<String, dynamic> json) {");
+    buffer.writeln("return $className(");
+
+    for (var element in properties) {
+      if (element.type == 'json' || element.type == 'jsonb') {
+        final command = '''
+jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
+''';
+        buffer.writeln(
+            "${element.dartName}: json['${element.name}'] != null ? $command: null,");
+      } else {
+        buffer.writeln("${element.dartName}: json['${element.name}'],");
+      }
+    }
+    buffer.writeln("}");
+    return buffer.toString();
+  }
+
+  Map<String, dynamic> toJson(dynamic data) {
+    final mapped = jsonDecode(data.toString()) as Map<String, dynamic>;
+    return mapped;
+  }
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -33,12 +65,6 @@ class TableProperty {
   String get dartName => snakeToCamelCase(name);
   String get dartType => _dartType;
   String get _dartType {
-//     uuid
-// int4
-// timestamptz
-// numeric
-// int2
-// int8
     switch (type) {
       case 'integer' ||
             'int4' ||
@@ -53,7 +79,7 @@ class TableProperty {
 
       case 'numeric':
         return 'num';
-      case 'boolean'|| 'bool':
+      case 'boolean' || 'bool':
         return 'bool';
       case '_numeric':
         return 'List<num>';
@@ -74,6 +100,10 @@ class TableProperty {
         stdout.writeln('Unknown type: $type');
         return snakeToPascalCase(type);
     }
+  }
+
+  String get field {
+    return "final $dartType${isNullable ? "?" : ""} $dartName;";
   }
 }
 

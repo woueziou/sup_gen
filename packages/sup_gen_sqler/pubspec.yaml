@@ -1,6 +1,6 @@
 name: sup_gen_sqler
 description: Package contains sqls and database handler for sup_gen_runner
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
 documentation: https://github.com/woueziou/sup_gen.git

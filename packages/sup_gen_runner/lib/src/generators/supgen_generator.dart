@@ -43,7 +43,10 @@ class SupgenGenerator {
     final dbHelper = DatabaseHelper(option: dbOption);
     // get items from server
     final enumList = await dbHelper.retrieveEnumsFromServer();
-    final tables = await dbHelper.retrieveTableFromServer();
+    final tables = [
+      ...(await dbHelper.retrieveTableFromServer()),
+      ...(await dbHelper.retrieveViewsFromServer()),
+    ];
 
     final enumPath =
         normalize(join(pubspecFile.parent.path, output, outputEnums));
@@ -59,6 +62,7 @@ class SupgenGenerator {
     writer(generated, tablePath);
 
     stdout.writeln('[PostgreGen] Finished generating.');
+
     return;
   }
 }
