@@ -11,7 +11,7 @@ String generateTable(
   for (var table in tableList) {
     if (table.hasValidName) {
       buffer.writeln('class ${table.className} {');
-      
+
       // Generate constructors
       buffer.writeln('  ${table.className}({');
       for (final prop in table.properties) {
@@ -22,9 +22,10 @@ String generateTable(
 
       // Genereate properties
       for (final prop in table.properties) {
-        buffer.writeln(
-            '  final ${prop.dartType}${prop.isNullable ? "?" : ""} ${prop.dartName};');
+        buffer.writeln(prop.field);
       }
+
+      buffer.writeln(table.fromJsonFunction);
       buffer.writeln('}');
       buffer.writeCharCode("\n".codeUnitAt(0));
 
@@ -34,7 +35,8 @@ String generateTable(
           '[SupGen] ${table.name} cannot be generated | Check table name');
     }
   }
-
+  // final buffResult = buffer.toString();
+  // stdout.writeln(buffResult);
   return formatter.format(buffer.toString());
 }
 

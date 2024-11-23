@@ -254,3 +254,43 @@ class AuditLogs {
   final String? changedBy;
   final String changedAt;
 }
+
+class FoodsWithIngredients {
+  FoodsWithIngredients({
+    this.foodId,
+    this.foodName,
+    this.price,
+    this.foodDescription,
+    this.cookTime,
+    this.imageUrl,
+    this.hasIngredients,
+    this.ingredients,
+  });
+  final String? foodId;
+  final String? foodName;
+  final num? price;
+  final String? foodDescription;
+  final int? cookTime;
+  final String? imageUrl;
+  final bool? hasIngredients;
+  final Map<String, dynamic>? ingredients;
+}
+
+class AvailableIngredients {
+  AvailableIngredients({
+    this.ingredientId,
+    this.ingredientName,
+    this.ingredientDescription,
+    this.unit,
+    this.availableQuantity,
+    this.price,
+    this.nearestExpiryDate,
+  });
+  final String? ingredientId;
+  final String? ingredientName;
+  final String? ingredientDescription;
+  final String? unit;
+  final num? availableQuantity;
+  final num? price;
+  final String? nearestExpiryDate;
+}

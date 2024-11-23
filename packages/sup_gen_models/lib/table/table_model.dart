@@ -13,18 +13,11 @@ class TableModel {
 
   bool get hasValidName => isValidDartClassName(name);
   String get className => snakeToPascalCase(name);
-  factory TableModel.fromJson(Map<String, dynamic> json) {
-    // final ex= Map<String,dynamic>.from("json");
-    return TableModel(
-      name: json['name'],
-      properties: json['properties'],
-    );
-  }
+
   String get fromJsonFunction {
     final buffer = StringBuffer();
     buffer.writeln("factory $className.fromJson(Map<String, dynamic> json) {");
     buffer.writeln("return $className(");
-
     for (var element in properties) {
       if (element.type == 'json' || element.type == 'jsonb') {
         final command = '''
@@ -36,14 +29,50 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
         buffer.writeln("${element.dartName}: json['${element.name}'],");
       }
     }
+    buffer.writeln(");");
     buffer.writeln("}");
     return buffer.toString();
   }
 
-  Map<String, dynamic> toJson(dynamic data) {
-    final mapped = jsonDecode(data.toString()) as Map<String, dynamic>;
-    return mapped;
+  String createClass() {
+    final buffer = StringBuffer();
+    buffer.writeln('// ignore_for_file: camel_case_types');
+    buffer.writeln("import 'supabase_enums.gen.dart'; \n");
+    // for (var table in tableList) {
+    if (hasValidName) {
+      buffer.writeln('class $className {');
+
+      // Generate constructors
+      buffer.writeln('  $className({');
+      for (final prop in properties) {
+        buffer.writeln(
+            ' ${prop.isNullable ? "" : "required"}   this.${prop.dartName},');
+      }
+      buffer.writeln('});');
+
+      // Genereate properties
+      for (final prop in properties) {
+        buffer.writeln(prop.field);
+      }
+
+      buffer.writeln(fromJsonFunction);
+      buffer.writeln('}');
+      buffer.writeCharCode("\n".codeUnitAt(0));
+    }
+    return buffer.toString();
   }
+
+//   factory TableModel.fromJson(Map<String, dynamic> json) {
+// return TableModel(
+// id: json['id'],
+// name: json['name'],
+// );
+// }
+
+  // Map<String, dynamic> toJson(dynamic data) {
+  //   final mapped = jsonDecode(data.toString()) as Map<String, dynamic>;
+  //   return mapped;
+  // }
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)

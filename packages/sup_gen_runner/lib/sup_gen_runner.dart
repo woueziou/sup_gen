@@ -42,8 +42,8 @@ class SupgenBuilder extends Builder {
     _state = state;
     await generator.build(
       config: _config,
-      writer: (contents, path) {
-        buildStep.writeAsString(_output(buildStep, path), contents);
+      writer: (contents, path) async {
+        await buildStep.writeAsString(_output(buildStep, path), contents);
       },
     );
   }

@@ -21,48 +21,55 @@ class SupgenGenerator {
       {required this.pubspecFile, this.buildFile, required this.dbOption});
 
   Future<void> build({Config? config, FileWriter? writer}) async {
-    config ??= loadPubspecConfigOrNull(pubspecFile, buildFile: buildFile);
-    if (config == null) return;
-    final output = config.pubspec.supGenOption.output;
-    void defaultWriter(String contents, String path) {
-      final file = File(path);
-      if (!file.existsSync()) {
-        file.createSync(recursive: true);
+    try {
+      config ??= loadPubspecConfigOrNull(pubspecFile, buildFile: buildFile);
+      if (config == null) return;
+      final output = config.pubspec.supGenOption.output;
+      Future<void> defaultWriter(String contents, String path) async {
+        final file = File(path);
+        if (!file.existsSync()) {
+          file.createSync(recursive: true);
+        }
+        file.writeAsString(contents);
       }
-      file.writeAsStringSync(contents);
+
+      writer ??= defaultWriter;
+
+      final absoluteOutput =
+          Directory(normalize(join(pubspecFile.parent.path, output)));
+      if (!absoluteOutput.existsSync()) {
+        absoluteOutput.createSync(recursive: true);
+      }
+
+      final dbHelper = DatabaseHelper(option: dbOption);
+      // get items from server
+      final enumList = await dbHelper.retrieveEnumsFromServer();
+      final tables = [
+        ...(await dbHelper.retrieveTableFromServer()),
+        ...(await dbHelper.retrieveViewsFromServer()),
+      ];
+
+      final enumPath =
+          normalize(join(pubspecFile.parent.path, output, outputEnums));
+
+      final enumGeneratedClass =
+          generateEnums(enums: enumList, formatter: formatter);
+      await writer(enumGeneratedClass, enumPath);
+
+      final tablePath = normalize(
+          join(pubspecFile.parent.path, output, outputTableFilesName));
+      final generated = generateTable(
+        tableList: tables,
+        formatter: formatter,
+      );
+
+      await writer(generated, tablePath);
+
+      stdout.writeln('[PostgreGen] Finished generating.');
+
+      exit(0);
+    } catch (e) {
+      exit(1);
     }
-
-    writer ??= defaultWriter;
-
-    final absoluteOutput =
-        Directory(normalize(join(pubspecFile.parent.path, output)));
-    if (!absoluteOutput.existsSync()) {
-      absoluteOutput.createSync(recursive: true);
-    }
-
-    final dbHelper = DatabaseHelper(option: dbOption);
-    // get items from server
-    final enumList = await dbHelper.retrieveEnumsFromServer();
-    final tables = [
-      ...(await dbHelper.retrieveTableFromServer()),
-      ...(await dbHelper.retrieveViewsFromServer()),
-    ];
-
-    final enumPath =
-        normalize(join(pubspecFile.parent.path, output, outputEnums));
-
-    final enumGeneratedClass =
-        generateEnums(enums: enumList, formatter: formatter);
-    writer(enumGeneratedClass, enumPath);
-
-    final tablePath =
-        normalize(join(pubspecFile.parent.path, output, outputTableFilesName));
-    final generated = generateTable(tableList: tables, formatter: formatter);
-
-    writer(generated, tablePath);
-
-    stdout.writeln('[PostgreGen] Finished generating.');
-
-    return;
   }
 }
