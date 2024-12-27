@@ -51,6 +51,7 @@ SUPABASE_DB_HOST=DB_HOST
 SUPABASE_DB_PORT=DB_PORT
 SUPABASE_DB_PASSWORD=YOUR_DB_PASSWORD
 SUPABASE_DB_SCHEMA=public
+SUPABASE_DB=YOUR_DATABASE_NAME
 ```
 ⚠️ Important: Keep your .env file secure. Do not commit it to version control. You don't want to give the key of you home to the world
 
@@ -69,24 +70,23 @@ You will see in your output folder some files:
 
 ## Roadmap
 
-
 [x] Setup project 
 
 [x] Write SQL Queries
 
 [x] Write Colum type adapters 
 
-[ ] handle Enums mapping
+[x] handle Table mapping
 
-[ ] handle Table mapping
+[x] handle Enums mapping
 
-[ ] Handle views mapping
+[x] Handle views mapping
 
-[ ] handle Enum reverse target : get enum value string name
-
-[ ] Setup test cases
+[x] handle Enum reverse target : get enum value string name
 
 [ ] Handle Edge functions mapping
+
+[ ] Setup test cases
 
 [ ] Handle RPC mapping
 

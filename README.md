@@ -70,23 +70,19 @@ You will see in your output folder some files:
 
 ## Roadmap
 
-- Additional browser support
-
-- Add more integrations
-
 [x] Setup project 
 
 [x] Write SQL Queries
 
 [x] Write Colum type adapters 
 
-[ ] handle Table mapping
+[x] handle Table mapping
 
-[ ] handle Enums mapping
+[x] handle Enums mapping
 
-[ ] Handle views mapping
+[x] Handle views mapping
 
-[ ] handle Enum reverse target : get enum value string name
+[x] handle Enum reverse target : get enum value string name
 
 [ ] Handle Edge functions mapping
 

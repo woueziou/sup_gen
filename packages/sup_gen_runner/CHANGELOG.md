@@ -1,6 +1,15 @@
-## 1.0.0
 
-- Initial version.
+
+## 1.2.1
+
+ - Fix: update Readme
+
+## 1.2.0
+
+- Update supgen_models utility to 1.5.0
+- Enhance enums types generation
+- Handle array type generation. Ex: _text => List<String>
+- Add reverse retrieval of Enum for enums containing hyphens (-)
 
 
 ## 1.0.2
@@ -20,10 +29,7 @@
 - Fix minor bugs in model package
 
 
+## 1.0.0
 
-## 1.2.0
+- Initial version.
 
-- Update supgen_models utility to 1.5.0
-- Enhance enums types generation
-- Handle array type generation. Ex: _text => List<String>
-- Add reverse retrieval of Enum for enums containing hyphens (-)
