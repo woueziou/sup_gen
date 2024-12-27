@@ -1,6 +1,9 @@
+
+
 import 'package:postgres/postgres.dart';
 import 'package:sup_gen_model/database_option.dart';
-import 'package:sup_gen_model/table/table_model.dart';
+import 'package:sup_gen_model/objects/enum_model.dart';
+import 'package:sup_gen_model/objects/table_model.dart';
 
 class DatabaseHelper {
   final DatabaseOption option;
@@ -26,7 +29,7 @@ class DatabaseHelper {
     return Connection.open(
         Endpoint(
             host: option.host,
-            database: 'postgres',
+            database: option.db,
             username: option.userName,
             password: option.password,
             port: option.port),
@@ -35,22 +38,32 @@ class DatabaseHelper {
         ));
   }
 
-  Future<List<String>> getViews() async {
+  Future<List<TableModel>> retrieveViewsFromServer() async {
     final conn = await _getConnection();
 
     final tables = await conn.execute(
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='VIEW';",
     );
+
     var result = tables.map((e) => e[0].toString()).toList();
+
     conn.close().then(
       (_) {
         print('Connection closed');
       },
     );
-    return result;
+
+    final views = <TableModel>{};
+    for (var element in result) {
+      final tableDefinition = await _getTableDefinition(table: element);
+      final model = TableModel(name: element, properties: tableDefinition);
+      views.add(model);
+    }
+    
+    return views.toList();
   }
 
-  Future<List<TableProperty>> getTableDefinition(
+  Future<List<TableProperty>> _getTableDefinition(
       {required String table}) async {
     final conn = await _getConnection();
     final response = await conn.execute('''
@@ -134,21 +147,18 @@ ORDER BY
       },
     );
 
-    conn.close().then((value) {
-      
-    },);
+    conn.close().then(
+          (value) {},
+        );
 
     return result;
   }
 
   Future<List<TableModel>> retrieveTableFromServer() async {
     final tables = await _getTables();
-
     final List<TableModel> tableModels = [];
     for (var table in tables) {
-     
-      final tableDefinition = await getTableDefinition(table: table);
-      
+      final tableDefinition = await _getTableDefinition(table: table);
       final model = TableModel(name: table, properties: tableDefinition);
       tableModels.add(model);
     }

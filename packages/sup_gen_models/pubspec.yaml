@@ -1,6 +1,6 @@
 name: sup_gen_model
 description: Package contains model for sup_gen_runner and sup_gen_sqler
-version: 1.0.0
+version: 1.5.0
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
 documentation: https://github.com/woueziou/sup_gen.git
@@ -15,7 +15,6 @@ dependencies:
   analyzer: '>=5.2.0 <7.0.0'  
   source_gen: ^1.4.0
   json_annotation: ^4.4.0
-  # path: ^1.8.0
 
 dev_dependencies:
   build_config: ^1.1.1  

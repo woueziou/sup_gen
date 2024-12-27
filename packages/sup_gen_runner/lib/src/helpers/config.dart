@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:path/path.dart';
-import 'package:sup_gen_model/pubspec.dart';
+import 'package:sup_gen_model/pubspec/pubspec.dart';
 import 'package:yaml/yaml.dart';
 
 import 'utils.dart';

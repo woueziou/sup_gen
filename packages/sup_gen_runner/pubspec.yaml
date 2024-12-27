@@ -1,6 +1,6 @@
 name: sup_gen_runner
 description: "A Dart package for generating classes, enums, and views directly from a Supabase PostgreSQL server. Simplify the process of integrating your database schema into your Dart/Flutter projects."
-version: 1.0.0+2
+version: 1.2.0
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
 documentation: https://github.com/woueziou/sup_gen.git
@@ -14,15 +14,17 @@ environment:
 dependencies:
   build: ^2.4.1
   analyzer: '>=5.2.0 <7.0.0'  
-  # source_gen: ^1.4.0
-  sup_gen_model: ^1.0.0
   yaml: ^3.1.2
   collection: ^1.18.0
   glob: ^2.1.2
   path: ^1.9.0
   crypto: ^3.0.6
   dart_style: ^2.3.7
-  sup_gen_sqler: ^1.0.0
+  json_annotation: ^4.4.0
+  postgres: ^3.4.3
+  dartx: ^1.2.0
+  sup_gen_model: ^1.5.0
+
   # path: ^1.8.0
 
 dev_dependencies:
@@ -30,5 +32,11 @@ dev_dependencies:
   build_runner: ^2.4.6  
   lints: ^2.1.1  
   test: ^1.24.8
+  json_serializable: ^6.0.0
 
 
+sup_gen_option:
+  output: lib/supabase_models
+  enable: true
+  schema: 'public' 
+  useSsl: false

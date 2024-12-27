@@ -35,7 +35,7 @@ Map<K, V> mergeMap<K, V>(Iterable<Map<K, V>?> maps,
 
 
 // file writer typedef
-typedef FileWriter = void Function(String contents, String path);
+typedef FileWriter = Future<void> Function(String contents, String path);
 // #######################################################################################################################
 
 String snakeToPascalCase(String text) {

@@ -12,7 +12,7 @@ import 'package:sup_gen_runner/src/helpers/env.dart';
 Builder build(BuilderOptions options) => SupgenBuilder();
 
 class SupgenBuilder extends Builder {
-  _SupGenGenBuilderState? _state;
+  _SupGenGenBuilderState? state;
   static AssetId _output(BuildStep buildStep, String path) {
     return AssetId(
       buildStep.inputId.package,
@@ -20,15 +20,15 @@ class SupgenBuilder extends Builder {
     );
   }
 
-  late final _config = loadPubspecConfigOrNull(
-    generator.pubspecFile,
-    buildFile: generator.buildFile,
-  );
-
   final generator = SupgenGenerator(
       pubspecFile: File('pubspec.yaml'),
       buildFile: File('build.yaml'),
       dbOption: loadDbOptionFromEnvFile(envFile: File(".env")));
+
+  late final _config = loadPubspecConfigOrNull(
+    generator.pubspecFile,
+    buildFile: generator.buildFile,
+  );
 
   @override
   Future<void> build(BuildStep buildStep) async {
@@ -36,16 +36,17 @@ class SupgenBuilder extends Builder {
       return;
     }
     final state = await _createState(_config, buildStep);
-    if (state.shouldSkipGenerate(_state)) {
+    if (state.shouldSkipGenerate(this.state)) {
       return;
     }
-    _state = state;
+    this.state = state;
     await generator.build(
       config: _config,
-      writer: (contents, path) {
-        buildStep.writeAsString(_output(buildStep, path), contents);
+      writer: (contents, path) async {
+        await buildStep.writeAsString(_output(buildStep, path), contents);
       },
     );
+    return;
   }
 
   @override
