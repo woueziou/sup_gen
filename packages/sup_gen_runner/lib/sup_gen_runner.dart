@@ -46,7 +46,6 @@ class SupgenBuilder extends Builder {
         await buildStep.writeAsString(_output(buildStep, path), contents);
       },
     );
-    // super.build(buildStep);
     return;
   }
 
