@@ -2,7 +2,8 @@
 
 import 'package:postgres/postgres.dart';
 import 'package:sup_gen_model/database_option.dart';
-import 'package:sup_gen_model/table/table_model.dart';
+import 'package:sup_gen_model/objects/enum_model.dart';
+import 'package:sup_gen_model/objects/table_model.dart';
 
 class DatabaseHelper {
   final DatabaseOption option;
@@ -28,7 +29,7 @@ class DatabaseHelper {
     return Connection.open(
         Endpoint(
             host: option.host,
-            database: 'postgres',
+            database: option.db,
             username: option.userName,
             password: option.password,
             port: option.port),

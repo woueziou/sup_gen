@@ -1,6 +1,6 @@
 name: sup_gen_model
 description: Package contains model for sup_gen_runner and sup_gen_sqler
-version: 1.0.3
+version: 1.5.0
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
 documentation: https://github.com/woueziou/sup_gen.git

@@ -20,14 +20,13 @@ DatabaseOption loadDbOptionFromEnvFile({required File envFile}) {
     final value = parts[1].trim();
     envMap[key] = value;
   }
-  // stdout.writeln('[SupGen] Loaded .env file');
-
   final keys = {
     "SUPABASE_DB_USER",
     "SUPABASE_DB_HOST",
     "SUPABASE_DB_PORT",
     "SUPABASE_DB_PASSWORD",
-    "SUPABASE_DB_SCHEMA"
+    "SUPABASE_DB_SCHEMA",
+    "SUPABASE_DB"
   };
   // check if the required keys are present
 
@@ -43,6 +42,7 @@ DatabaseOption loadDbOptionFromEnvFile({required File envFile}) {
     password: envMap['SUPABASE_DB_PASSWORD']!,
     host: envMap['SUPABASE_DB_HOST']!,
     schema: envMap['SUPABASE_DB_SCHEMA'] ?? 'public',
+    db: envMap['SUPABASE_DB'] ?? 'postgres',
     port: int.parse(envMap['SUPABASE_DB_PORT']!),
   );
 }

@@ -1,6 +1,6 @@
 
 
-import 'package:sup_gen_model/table/table_model.dart';
+import 'package:sup_gen_model/objects/table_model.dart';
 
 void main() {
   final table = TableModel(name: "Test", properties: [

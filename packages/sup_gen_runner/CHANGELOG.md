@@ -20,3 +20,10 @@
 - Fix minor bugs in model package
 
 
+
+## 1.2.0
+
+- Update supgen_models utility to 1.5.0
+- Enhance enums types generation
+- Handle array type generation. Ex: _text => List<String>
+- Add reverse retrieval of Enum for enums containing hyphens (-)

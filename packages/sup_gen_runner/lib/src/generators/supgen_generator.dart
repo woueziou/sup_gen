@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
@@ -7,6 +8,8 @@ import 'package:sup_gen_runner/src/database_helper/database_helper.dart';
 import 'package:sup_gen_runner/src/generators/functions/table_generator.dart';
 import 'package:sup_gen_runner/src/helpers/config.dart';
 import 'package:sup_gen_runner/src/helpers/utils.dart';
+
+import 'functions/enum_generator.dart';
 
 class SupgenGenerator {
   final File pubspecFile;
@@ -44,6 +47,10 @@ class SupgenGenerator {
       final dbHelper = DatabaseHelper(option: dbOption);
       // get items from server
       final enumList = await dbHelper.retrieveEnumsFromServer();
+      for (var element in enumList) {
+        log("$element");
+        log(element.name);
+      }
       final tables = await dbHelper.retrieveTableFromServer();
       final views = await dbHelper.retrieveViewsFromServer();
 

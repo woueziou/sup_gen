@@ -111,6 +111,8 @@ class TableProperty {
         return 'bool';
       case '_numeric':
         return 'List<num>';
+      case '_text':
+        return 'List<String>';
       case 'text' ||
             'uuid' ||
             'character varying' ||
@@ -135,21 +137,21 @@ class TableProperty {
   }
 }
 
-class EnumModel {
-  final String name;
-  final List<String> values;
-  EnumModel({required this.name, required this.values});
+// class EnumModel {
+//   final String name;
+//   final List<String> values;
+//   EnumModel({required this.name, required this.values});
 
-  String get namePascalCase {
-    final pascalCase =
-        snakeToPascalCase(name.replaceAll('"', '').replaceAll(" ", "_"));
-    return pascalCase[0].toUpperCase() + pascalCase.substring(1);
-  }
+//   String get namePascalCase {
+//     final pascalCase =
+//         snakeToPascalCase(name.replaceAll('"', '').replaceAll(" ", "_"));
+//     return pascalCase[0].toUpperCase() + pascalCase.substring(1);
+//   }
 
-  List<String> get dartValues => values.map((e) {
-        final pascalCase =
-            snakeToPascalCase(e.replaceAll('"', '').replaceAll(" ", "_"));
-        final result = pascalCase[0].toUpperCase() + pascalCase.substring(1);
-        return result;
-      }).toList();
-}
+//   List<String> get dartValues => values.map((e) {
+//         final pascalCase =
+//             snakeToPascalCase(e.replaceAll('"', '').replaceAll(" ", "_"));
+//         final result = pascalCase[0].toUpperCase() + pascalCase.substring(1);
+//         return result;
+//       }).toList();
+// }

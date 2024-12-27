@@ -14,3 +14,15 @@
 ## 1.0.3
 
 - Fix class import
+
+## 1.4.0
+
+- Ehance Enum Model
+- Change List to Map<String,String> to support backward compatibility
+
+## 1.5.0
+
+- Add Support to text array . ex: _text => List<String> 
+
+
+
