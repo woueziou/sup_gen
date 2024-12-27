@@ -51,6 +51,7 @@ SUPABASE_DB_HOST=DB_HOST
 SUPABASE_DB_PORT=DB_PORT
 SUPABASE_DB_PASSWORD=YOUR_DB_PASSWORD
 SUPABASE_DB_SCHEMA=public
+SUPABASE_DB=YOUR_DATABASE_NAME
 ```
 ⚠️ Important: Keep your .env file secure. Do not commit it to version control. You don't want to give the key of you home to the world
 
