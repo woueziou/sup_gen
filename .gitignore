@@ -7,3 +7,5 @@
 pubspec.lock
 pubspec_overrides.yaml
 apps/project_test/.env copy
+packages/sup_gen_runner/.env copy
+packages/sup_gen_runner/.env
