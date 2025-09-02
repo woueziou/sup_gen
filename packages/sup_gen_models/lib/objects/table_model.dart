@@ -79,6 +79,8 @@ class TableProperty {
   String get dartType => _dartType;
   String get _dartType {
     switch (type) {
+      case "float4" || "real" || "float8" || "double precision":
+        return 'double';
       case 'integer' ||
             'int4' ||
             'int' ||

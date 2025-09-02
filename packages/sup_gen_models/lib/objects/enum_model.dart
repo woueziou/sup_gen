@@ -13,13 +13,6 @@ class EnumModel {
     return pascalCase[0].toUpperCase() + pascalCase.substring(1);
   }
 
-  // List<String> get formatedChildren => values.map((e) {
-  //       final pascalCase =
-  //           snakeToPascalCase(e.replaceAll('"', '').replaceAll(" ", "_"));
-  //       final result = pascalCase[0].toUpperCase() + pascalCase.substring(1);
-  //       return result;
-  //     }).toList();
-
   Map<String, String> get mappedData {
     final result = <String, String>{};
     for (var element in values) {
