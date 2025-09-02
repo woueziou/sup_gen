@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
-import 'package:sup_gen_model/objects/table_model.dart';
+import 'package:sup_gen_runner/models/table_model.dart';
 
 String generateTable(
     {required List<TableModel> tableList, required DartFormatter formatter}) {

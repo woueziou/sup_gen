@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:sup_gen_model/database_option.dart';
+import 'package:sup_gen_runner/models/database_option.dart';
 
 
 DatabaseOption loadDbOptionFromEnvFile({required File envFile}) {

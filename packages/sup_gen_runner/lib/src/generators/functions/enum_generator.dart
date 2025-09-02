@@ -1,5 +1,5 @@
 import 'package:dart_style/dart_style.dart';
-import 'package:sup_gen_model/objects/enum_model.dart';
+import 'package:sup_gen_runner/models/enum_model.dart';
 
 String generateEnums(
     {required List<EnumModel> enums, required DartFormatter formatter}) {

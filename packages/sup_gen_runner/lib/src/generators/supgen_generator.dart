@@ -1,9 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart';
-import 'package:sup_gen_model/database_option.dart';
+import 'package:sup_gen_runner/models/database_option.dart';
 import 'package:sup_gen_runner/src/database_helper/database_helper.dart';
 import 'package:sup_gen_runner/src/generators/functions/table_generator.dart';
 import 'package:sup_gen_runner/src/helpers/config.dart';
@@ -45,16 +43,15 @@ class SupgenGenerator {
       }
 
       final dbHelper = DatabaseHelper(option: dbOption);
-      // get items from server
+      // Get enums definitions from the database
       final enumList = await dbHelper.retrieveEnumsFromServer();
-      for (var element in enumList) {
-        log("$element");
-        log(element.name);
-      }
-      final tables = await dbHelper.retrieveTableFromServer();
+
+      // Get tables and views definitions from the database
+      final tablesResult = await dbHelper.retrieveTableFromServer();
       final views = await dbHelper.retrieveViewsFromServer();
 
-      tables.addAll(views);
+      tablesResult.addAll(views);
+      // final tablesAndViews
 
       final enumPath =
           normalize(join(pubspecFile.parent.path, output, outputEnums));
@@ -66,22 +63,16 @@ class SupgenGenerator {
           join(pubspecFile.parent.path, output, outputTableFilesName));
 
       final tableGenerated = generateTable(
-        tableList: tables,
+        tableList: tablesResult,
         formatter: formatter,
       );
       await Future.wait([
         writer(enumGeneratedClass, enumPath),
         writer(tableGenerated, tablePath),
       ]);
-
-      // stdout.write("${result.length} files generated\n");
-      // await writer(enumGeneratedClass, enumPath);
-      // await writer(tableGenerated, tablePath);
-
       stdout.writeln('[PostgreGen] Finished generating.');
       // exit(0);
       return;
-
     } catch (e) {
       stderr.writeln('[PostgreGen] Error: $e');
       exit(1);

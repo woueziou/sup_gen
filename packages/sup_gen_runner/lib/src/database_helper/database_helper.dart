@@ -1,9 +1,7 @@
-
-
 import 'package:postgres/postgres.dart';
-import 'package:sup_gen_model/database_option.dart';
-import 'package:sup_gen_model/objects/enum_model.dart';
-import 'package:sup_gen_model/objects/table_model.dart';
+import 'package:sup_gen_runner/models/database_option.dart';
+import 'package:sup_gen_runner/models/enum_model.dart';
+import 'package:sup_gen_runner/models/table_model.dart';
 
 class DatabaseHelper {
   final DatabaseOption option;
@@ -17,16 +15,11 @@ class DatabaseHelper {
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='BASE TABLE';",
     );
     var result = tables.map((e) => e[0].toString()).toList();
-    conn.close().then(
-      (_) {
-        print('Connection closed');
-      },
-    );
+    await conn.close();
     return result;
   }
 
   Future<Connection> _getConnection() {
-  
     return Connection.open(
         Endpoint(
             host: option.host,
@@ -40,19 +33,15 @@ class DatabaseHelper {
   }
 
   Future<List<TableModel>> retrieveViewsFromServer() async {
+    print("Start retrieving views from the database...");
     final conn = await _getConnection();
-
     final tables = await conn.execute(
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='VIEW';",
     );
-
+    print("Get ${tables.length} views from the database.");
     var result = tables.map((e) => e[0].toString()).toList();
 
-    conn.close().then(
-      (_) {
-        print('Connection closed');
-      },
-    );
+    await conn.close();
 
     final views = <TableModel>{};
     for (var element in result) {
@@ -60,7 +49,7 @@ class DatabaseHelper {
       final model = TableModel(name: element, properties: tableDefinition);
       views.add(model);
     }
-    
+
     return views.toList();
   }
 
@@ -115,6 +104,7 @@ WHERE
   }
 
   Future<List<EnumModel>> retrieveEnumsFromServer() async {
+    print("Start retrieving enums from the database...");
     final conn = await _getConnection();
     final response = await conn.execute('''
 SELECT
@@ -148,21 +138,21 @@ ORDER BY
       },
     );
 
-    conn.close().then(
-          (value) {},
-        );
-
+    await conn.close();
     return result;
   }
 
   Future<List<TableModel>> retrieveTableFromServer() async {
+    print("Start retrieving tables from the database...");
     final tables = await _getTables();
+    print("Get ${tables.length} tables from the database.");
     final List<TableModel> tableModels = [];
     for (var table in tables) {
       final tableDefinition = await _getTableDefinition(table: table);
       final model = TableModel(name: table, properties: tableDefinition);
       tableModels.add(model);
     }
+
     return tableModels;
   }
 
@@ -170,7 +160,7 @@ ORDER BY
     final conn = await _getConnection();
     conn.close().then(
       (_) {
-        print('Connection closed');
+        // print('Connection closed');
       },
     );
   }
