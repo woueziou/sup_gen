@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "models",
+			"path": "./packages/sup_gen_models"
+		},
+		{
+			"name": "runner",
+			"path": "./packages/sup_gen_runner"
+		},
+		{
+			"name": "sqler",
+			"path": "./packages/sup_gen_sqler"
+		},
+		{
+			"name": "app-example",
+			"path": "./apps/project_test"
+		},
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"editor.fontSize": 18,
+		"editor.fontFamily": "'Twilio Sans Mono', 'Fira Code'",
+		"editor.fontLigatures": true
+	}
+}

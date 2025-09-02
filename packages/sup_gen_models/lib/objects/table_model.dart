@@ -35,9 +35,6 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
 
   String createClass() {
     final buffer = StringBuffer();
-    // buffer.writeln('// ignore_for_file: camel_case_types');
-    // buffer.writeln("import 'supabase_enums.gen.dart'; \n");
-    // for (var table in tableList) {
     if (hasValidName) {
       buffer.writeln('class $className {');
 
@@ -60,18 +57,6 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
     }
     return buffer.toString();
   }
-
-//   factory TableModel.fromJson(Map<String, dynamic> json) {
-// return TableModel(
-// id: json['id'],
-// name: json['name'],
-// );
-// }
-
-  // Map<String, dynamic> toJson(dynamic data) {
-  //   final mapped = jsonDecode(data.toString()) as Map<String, dynamic>;
-  //   return mapped;
-  // }
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
