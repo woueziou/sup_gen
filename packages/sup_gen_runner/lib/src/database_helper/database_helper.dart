@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:postgres/postgres.dart';
 import 'package:sup_gen_runner/models/database_option.dart';
 import 'package:sup_gen_runner/models/enum_model.dart';
@@ -33,12 +35,12 @@ class DatabaseHelper {
   }
 
   Future<List<TableModel>> retrieveViewsFromServer() async {
-    print("Start retrieving views from the database...");
+    stdout.writeln("Start retrieving views from the database...");
     final conn = await _getConnection();
     final tables = await conn.execute(
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='VIEW';",
     );
-    print("Get ${tables.length} views from the database.");
+    stdout.writeln("Get ${tables.length} views from the database.");
     var result = tables.map((e) => e[0].toString()).toList();
 
     await conn.close();
@@ -104,7 +106,7 @@ WHERE
   }
 
   Future<List<EnumModel>> retrieveEnumsFromServer() async {
-    print("Start retrieving enums from the database...");
+    stdout.writeln("Start retrieving enums from the database...");
     final conn = await _getConnection();
     final response = await conn.execute('''
 SELECT
@@ -129,7 +131,6 @@ ORDER BY
       <EnumModel>[],
       (previousValue, element) {
         final undc = element[1] as List<String>;
-        print((element[1]));
         final enumModel = EnumModel(
           name: element[0].toString(),
           values: undc,
@@ -137,15 +138,15 @@ ORDER BY
         return [...previousValue, enumModel];
       },
     );
-
+    stdout.writeln("Get ${result.length} enums from the database.");
     await conn.close();
     return result;
   }
 
   Future<List<TableModel>> retrieveTableFromServer() async {
-    print("Start retrieving tables from the database...");
+    stdout.writeln("Start retrieving tables from the database...");
     final tables = await _getTables();
-    print("Get ${tables.length} tables from the database.");
+    stdout.writeln("Get ${tables.length} tables from the database.");
     final List<TableModel> tableModels = [];
     for (var table in tables) {
       final tableDefinition = await _getTableDefinition(table: table);
@@ -160,7 +161,7 @@ ORDER BY
     final conn = await _getConnection();
     conn.close().then(
       (_) {
-        // print('Connection closed');
+        //  stdout.writeln('Connection closed');
       },
     );
   }

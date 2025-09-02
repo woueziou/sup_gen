@@ -1,10 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:sup_gen_runner/extensions/string_extension.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class TableModel {
   final String name;
   final List<TableProperty> properties;
@@ -59,7 +57,6 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
   }
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class TableProperty {
   final String name;
   final String type;
@@ -123,22 +120,3 @@ class TableProperty {
     return "final $dartType${isNullable ? "?" : ""} $dartName;";
   }
 }
-
-// class EnumModel {
-//   final String name;
-//   final List<String> values;
-//   EnumModel({required this.name, required this.values});
-
-//   String get namePascalCase {
-//     final pascalCase =
-//         snakeToPascalCase(name.replaceAll('"', '').replaceAll(" ", "_"));
-//     return pascalCase[0].toUpperCase() + pascalCase.substring(1);
-//   }
-
-//   List<String> get dartValues => values.map((e) {
-//         final pascalCase =
-//             snakeToPascalCase(e.replaceAll('"', '').replaceAll(" ", "_"));
-//         final result = pascalCase[0].toUpperCase() + pascalCase.substring(1);
-//         return result;
-//       }).toList();
-// }

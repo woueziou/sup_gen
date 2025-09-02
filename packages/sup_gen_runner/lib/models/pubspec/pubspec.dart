@@ -14,11 +14,11 @@ class Pubspec {
   /// [json] A map containing the pubspec configuration data
   ///
   /// Returns a new Pubspec instance with the parsed data.
-  factory Pubspec.fromJson(Map<dynamic, dynamic> json) {
+  factory Pubspec.fromJson(dynamic json) {
     return Pubspec(
       packageName: json['name'] as String,
       supGenOption:
-          SupGen.fromJson(json['sup_gen_option'] as Map<dynamic, dynamic>),
+          SupGen.fromJson(json['sup_gen_option']),
     );
   }
 
@@ -43,7 +43,7 @@ class SupGen {
   /// [json] A map containing the sup_gen_option configuration data
   ///
   /// Returns a new SupGen instance with the parsed data.
-  factory SupGen.fromJson(Map<dynamic, dynamic> json) {
+  factory SupGen.fromJson(dynamic json) {
     return SupGen(
       enable: json['enable'] as bool,
       schema: json['schema'] as String,

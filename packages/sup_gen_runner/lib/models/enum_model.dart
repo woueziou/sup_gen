@@ -1,7 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:sup_gen_runner/extensions/string_extension.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class EnumModel {
   final String name;
   final List<String> values;

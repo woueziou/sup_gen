@@ -12,7 +12,7 @@ String generateTable(
   for (var table in tableList) {
     if (table.hasValidName) {
       buffer.writeln('${table.createClass()}\n');
-      stdout.writeln('Generated Table: ${table.name}');
+      // stdout.writeln('Generated Table: ${table.name}');
     } else {
       stdout.writeln(
           '[SupGen] ${table.name} cannot be generated | Check table name');

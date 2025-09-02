@@ -20,21 +20,22 @@ class SupgenGenerator {
 
   SupgenGenerator(
       {required this.pubspecFile, this.buildFile, required this.dbOption});
+  
+  Future<void> _defaultWriter(String contents, String path) async {
+    final file = File(path);
+    if (!(await file.exists())) {
+      await file.create(recursive: true);
+    }
+    await file.writeAsString(contents);
+  }
 
-  Future<void> build({Config? config, FileWriter? writer}) async {
+  Future<void> build({Config? config, required FileWriter writer}) async {
     try {
       config ??= loadPubspecConfigOrNull(pubspecFile, buildFile: buildFile);
       if (config == null) return;
       final output = config.pubspec.supGenOption.output;
-      Future<void> defaultWriter(String contents, String path) async {
-        final file = File(path);
-        if (!(await file.exists())) {
-          await file.create(recursive: true);
-        }
-        await file.writeAsString(contents);
-      }
 
-      writer ??= defaultWriter;
+      // writer ??= _defaultWriter;
 
       final absoluteOutput =
           Directory(normalize(join(pubspecFile.parent.path, output)));
@@ -70,11 +71,10 @@ class SupgenGenerator {
         writer(enumGeneratedClass, enumPath),
         writer(tableGenerated, tablePath),
       ]);
-      stdout.writeln('[PostgreGen] Finished generating.');
-      // exit(0);
+      stdout.writeln('[ClassGen]: Finished generating.');
       return;
     } catch (e) {
-      stderr.writeln('[PostgreGen] Error: $e');
+      stderr.writeln('[ClassGen]: Error: $e');
       exit(1);
     }
   }
