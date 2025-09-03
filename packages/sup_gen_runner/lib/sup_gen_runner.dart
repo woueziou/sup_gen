@@ -11,31 +11,11 @@ import 'package:sup_gen_runner/src/helpers/env.dart';
 
 /// Entry point for the build system to create a SupgenBuilder instance.
 /// This function is called by the Dart build system when code generation is triggered.
-Builder build(BuilderOptions options) => SupgenBuilder();
+Builder build(BuilderOptions options) => SupgenBuilder(options: options);
 
-/// A custom builder that handles code generation for the sup_gen package.
-///
-/// This builder integrates with Dart's build system to automatically generate
-/// code based on project configuration. It performs the following process:
-///
-/// 1. **Configuration Loading**: Reads configuration from pubspec.yaml and build.yaml
-/// 2. **State Management**: Tracks changes using file digests to avoid unnecessary regeneration
-/// 3. **Code Generation**: Uses SupgenGenerator to create output files
-/// 4. **File Writing**: Writes generated content to specified output locations
-///
-/// The builder only regenerates code when relevant configuration files have changed,
-/// making the build process efficient by skipping unchanged dependencies.
 class SupgenBuilder extends Builder {
-  /// Holds the current state of the builder, including file digests
-  /// for change detection and optimization.
-  _SupGenGenBuilderState? state;
-
-  /// Helper method to create an AssetId for output files.
-  ///
-  /// [buildStep] The current build step context
-  /// [path] The relative path where the output file should be created
-  ///
-  /// Returns an AssetId pointing to the output location in the same package.
+  final BuilderOptions options;
+  SupgenBuilder({required this.options});
   static AssetId _output(BuildStep buildStep, String path) {
     return AssetId(
       buildStep.inputId.package,
@@ -43,34 +23,15 @@ class SupgenBuilder extends Builder {
     );
   }
 
-  /// The core generator instance configured with project files and database options.
-  ///
-  /// This generator is initialized with:
-  /// - pubspec.yaml: For project configuration
-  /// - build.yaml: For build-specific settings
-  /// - .env file: For database connection options
   final generator = SupgenGenerator(
       pubspecFile: File('pubspec.yaml'),
       buildFile: File('build.yaml'),
       dbOption: loadDbOptionFromEnvFile(envFile: File(".env")));
-
-  /// Configuration loaded from pubspec.yaml and build.yaml files.
-  /// This contains all the settings needed for code generation.
   late final _config = loadPubspecConfigOrNull(
     generator.pubspecFile,
     buildFile: generator.buildFile,
   );
 
-  /// Main build method that orchestrates the code generation process.
-  ///
-  /// This method follows these steps:
-  /// 1. **Config Validation**: Checks if valid configuration exists
-  /// 2. **State Creation**: Creates a new state with file digests for change detection
-  /// 3. **Skip Check**: Determines if generation can be skipped (no changes detected)
-  /// 4. **Code Generation**: Calls the generator to create output files
-  /// 5. **File Writing**: Writes generated content to the build system
-  ///
-  /// [buildStep] The current build step context provided by the build system
   @override
   Future<void> build(BuildStep buildStep) async {
     // Step 1: Validate configuration exists
@@ -78,37 +39,30 @@ class SupgenBuilder extends Builder {
       return;
     }
 
-    // Step 2: Create state with current file digests
-    final state = await _createState(_config, buildStep);
+    stdout.writeln(
+        '[SUPGEN] Starting generating... ${options.config["output"]} ');
 
-    // Step 3: Check if we can skip generation (optimization)
-    if (state.shouldSkipGenerate(this.state)) {
-      return;
-    }
-
-    // Step 4: Update state and trigger generation
-    this.state = state;
-    await generator.build(
+    final result = await generator.build(
       config: _config,
-      writer: (contents, path) async {
-        // Step 5: Write generated files to the build system
-        await buildStep.writeAsString(_output(buildStep, path), contents);
-        stdout.writeln('[SUPGEN] Generated: $path');
-      },
     );
+    // final id = _output(buildStep, "supabase_models");
+    for (final file in result) {
+      try {
+        final path = file['path'] as String;
+        final contents = file['content'] as String;
+
+        stdout.writeln('[SUPGEN] Generated: $path');
+        buildStep.writeAsString(_output(buildStep, path), contents);
+      } catch (e) {
+        print("An error occured");
+      } finally {
+        stdout.writeln("Finally block executed");
+      }
+    }
+    stdout.writeln('[SUPGEN] Generated: ${result.length} files');
     stdout.writeln('[SUPGEN] Finished generating.');
   }
 
-  /// Defines which files this builder will generate and their output locations.
-  ///
-  /// This getter tells the build system what output files to expect, which helps
-  /// with dependency tracking and incremental builds. The generated files include:
-  /// - View files: Generated database view models
-  /// - Table files: Generated database table models
-  /// - Enum files: Generated enum definitions
-  ///
-  /// Returns a map where the key is the input pattern and the value is a list
-  /// of output file paths relative to the package root.
   @override
   Map<String, List<String>> get buildExtensions {
     // Return empty map if no valid configuration
@@ -120,13 +74,11 @@ class SupgenBuilder extends Builder {
     // Define all output files that will be generated
     return {
       r'$package$': [
-        for (final name in [
-          generator.outputViewFilesName, // Database view models
-          generator.outputTableFilesName, // Database table models
-          generator.outputEnums, // Enum definitions
-        ])
-          join(output, name), // Combine output directory with filename
-      ],
+        generator.outputTableFilesName, // Database table models
+        generator.outputEnums, // Enum definitions
+      ].map((ou) {
+        return join(output, ou);
+      }).toList(),
     };
   }
 

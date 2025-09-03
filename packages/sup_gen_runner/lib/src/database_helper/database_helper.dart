@@ -12,12 +12,11 @@ class DatabaseHelper {
 
   Future<List<String>> _getTables() async {
     final conn = await _getConnection();
-
     final tables = await conn.execute(
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='BASE TABLE';",
     );
-    var result = tables.map((e) => e[0].toString()).toList();
     await conn.close();
+    var result = tables.map((e) => e[0].toString()).toList();
     return result;
   }
 
@@ -40,10 +39,9 @@ class DatabaseHelper {
     final tables = await conn.execute(
       "select table_name from information_schema.tables where  table_schema='${option.schema}' and table_type='VIEW';",
     );
+    await conn.close();
     stdout.writeln("Get ${tables.length} views from the database.");
     var result = tables.map((e) => e[0].toString()).toList();
-
-    await conn.close();
 
     final views = <TableModel>{};
     for (var element in result) {
@@ -90,6 +88,7 @@ WHERE
     cols.table_schema = '${option.schema}'
   AND cols.table_name = '$table';
 ''');
+    await conn.close();
     final listProperties = <TableProperty>[];
     for (var element in response) {
       final property = TableProperty(
@@ -126,7 +125,7 @@ GROUP BY
 ORDER BY
     t.typname;
 ''');
-
+    await conn.close();
     final result = response.fold(
       <EnumModel>[],
       (previousValue, element) {
@@ -139,7 +138,7 @@ ORDER BY
       },
     );
     stdout.writeln("Get ${result.length} enums from the database.");
-    await conn.close();
+
     return result;
   }
 
