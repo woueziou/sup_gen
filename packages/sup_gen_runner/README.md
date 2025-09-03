@@ -16,7 +16,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  supabase_dart_generator: ^<latest_version>
+  sup_gen_runner: ^<latest_version>
 dev_dependencies:
   build_runner: ^2.3.3
 ```
