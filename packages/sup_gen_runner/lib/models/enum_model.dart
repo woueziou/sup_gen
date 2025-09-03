@@ -1,7 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:sup_gen_model/extensions/string_extension.dart';
+import 'package:sup_gen_runner/extensions/string_extension.dart';
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class EnumModel {
   final String name;
   final List<String> values;
@@ -12,13 +10,6 @@ class EnumModel {
         snakeToPascalCase(name.replaceAll('"', '').replaceAll(" ", "_"));
     return pascalCase[0].toUpperCase() + pascalCase.substring(1);
   }
-
-  // List<String> get formatedChildren => values.map((e) {
-  //       final pascalCase =
-  //           snakeToPascalCase(e.replaceAll('"', '').replaceAll(" ", "_"));
-  //       final result = pascalCase[0].toUpperCase() + pascalCase.substring(1);
-  //       return result;
-  //     }).toList();
 
   Map<String, String> get mappedData {
     final result = <String, String>{};

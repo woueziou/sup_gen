@@ -1,5 +1,5 @@
 import 'package:dart_style/dart_style.dart';
-import 'package:sup_gen_model/objects/enum_model.dart';
+import 'package:sup_gen_runner/models/enum_model.dart';
 
 String generateEnums(
     {required List<EnumModel> enums, required DartFormatter formatter}) {
@@ -19,13 +19,7 @@ String generateEnums(
       } else {
         buffer.write(';');
       }
-      // buffer.writeCharCode("\n".codeUnitAt(0));
     }
-
-    // for (var item in enumItem.mappedData.keys) {
-    //   buffer.writeln('  $item');
-    // }
-    // buffer.writeln('@override');
     buffer.writeln('String get name {');
     buffer.writeln('switch (this) {');
     for (var item in enumItem.mappedData.entries) {
@@ -36,20 +30,6 @@ String generateEnums(
     buffer.writeln('return "${enumItem.enumName}";');
     buffer.writeln('}');
     buffer.writeln('}');
-//  @override
-//   String get name {
-//     switch (this) {
-//       case MyEnum.optionOne:
-//         return 'Option One';
-//       case MyEnum.optionTwo:
-//         return 'Option Two';
-//       case MyEnum.optionThree:
-//         return 'Option Three';
-//       default:
-//         return super.name;
-//     }
-//   }
-
     buffer.writeln('}');
     buffer.writeCharCode("\n".codeUnitAt(0));
   }

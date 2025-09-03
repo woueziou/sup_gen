@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug build_runner",
+            "program": "lib/sup_gen_runner.dart",
+            "args": [
+                "build",
+                "--delete-conflicting-outputs"
+            ],
+            "cwd": "${workspaceFolder}/packages/sup_gen_runner",
+            "console": "terminal",
+            "request": "launch",
+            "type": "dart"
+        }
+    ],
+    "compounds": []
+}
