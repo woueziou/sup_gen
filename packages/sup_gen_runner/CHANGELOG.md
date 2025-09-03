@@ -1,3 +1,10 @@
+## 1.4.0
+
+ - **REFACTOR**: remove unused JSON serialization annotations and clean up code.
+ - **REFACTOR**: remove unused test files and clean up code.
+ - **FEAT**: update package versions and refactor imports.
+ - **DOCS**: update README for clarity and additional details (#12).
+
 ## 1.3.0
 
  - **REFACTOR**: remove unused JSON serialization annotations and clean up code.

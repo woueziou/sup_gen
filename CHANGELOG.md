@@ -15,6 +15,30 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sup_gen_runner` - `v1.4.0`](#sup_gen_runner---v140)
+
+---
+
+#### `sup_gen_runner` - `v1.4.0`
+
+ - **REFACTOR**: remove unused JSON serialization annotations and clean up code.
+ - **REFACTOR**: remove unused test files and clean up code.
+ - **FEAT**: update package versions and refactor imports.
+ - **DOCS**: update README for clarity and additional details (#12).
+
+
+## 2025-09-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sup_gen_runner` - `v1.3.0`](#sup_gen_runner---v130)
 
 ---
