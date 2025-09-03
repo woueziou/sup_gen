@@ -1,3 +1,7 @@
+## 1.4.1
+
+ - **FIX**: correct package name in installation instructions.
+
 ## 1.4.0
 
  - **REFACTOR**: remove unused JSON serialization annotations and clean up code.

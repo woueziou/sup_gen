@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sup_gen_runner` - `v1.4.1`](#sup_gen_runner---v141)
+
+---
+
+#### `sup_gen_runner` - `v1.4.1`
+
+ - **FIX**: correct package name in installation instructions.
+
+
+## 2025-09-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sup_gen_runner` - `v1.4.0`](#sup_gen_runner---v140)
 
 ---
