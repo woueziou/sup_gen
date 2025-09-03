@@ -22,6 +22,17 @@
 - **Enhancement**: Better error handling and code organization
 - **Enhancement**: Optimize build process with improved state management documentation
 
+## 1.2.2
+
+- **Enhancement**: Add comprehensive documentation to SupgenBuilder and related classes
+- **Enhancement**: Improve code documentation with detailed step-by-step process explanations
+- **Fix**: Add missing `fromJson()` factory methods to `Pubspec` and `SupGen` classes
+- **Fix**: Correct variable naming typo (`ouput` to `output`) in buildExtensions
+- **Fix**: Clean up unused code blocks and commented statements
+- **Fix**: Improve type consistency in `fromJson()` methods
+- **Enhancement**: Better error handling and code organization
+- **Enhancement**: Optimize build process with improved state management documentation
+
 ## 1.2.1
 
  - Fix: update Readme
