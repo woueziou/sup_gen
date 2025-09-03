@@ -15,6 +15,32 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`example` - `v1.1.0`](#example---v110)
+ - [`sup_gen_runner` - `v1.5.0`](#sup_gen_runner---v150)
+
+---
+
+#### `example` - `v1.1.0`
+
+ - **FEAT**: enhance example and documentation for SupGen.
+
+#### `sup_gen_runner` - `v1.5.0`
+
+ - **FEAT**: enhance example and documentation for SupGen.
+
+
+## 2025-09-03
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sup_gen_runner` - `v1.4.1`](#sup_gen_runner---v141)
 
 ---

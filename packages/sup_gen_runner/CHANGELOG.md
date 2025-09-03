@@ -1,3 +1,7 @@
+## 1.5.0
+
+ - **FEAT**: enhance example and documentation for SupGen.
+
 ## 1.4.1
 
  - **FIX**: correct package name in installation instructions.
