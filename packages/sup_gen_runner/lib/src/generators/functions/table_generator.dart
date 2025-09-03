@@ -21,6 +21,3 @@ String generateTable(
 
   return formatter.format(buffer.toString());
 }
-
-
-

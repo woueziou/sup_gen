@@ -1,5 +1,3 @@
 class ClsGen {
-
-
   const ClsGen();
 }

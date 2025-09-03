@@ -29,8 +29,7 @@ class SupgenGenerator {
   //   await file.writeAsString(contents);
   // }
 
-  Future<List<Map<String, dynamic>>> build(
-      {Config? config}) async {
+  Future<List<Map<String, dynamic>>> build({Config? config}) async {
     try {
       config ??= loadPubspecConfigOrNull(pubspecFile, buildFile: buildFile);
       if (config == null) return [];

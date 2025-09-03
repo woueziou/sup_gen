@@ -44,7 +44,7 @@ String snakeToPascalCase(String text) {
 /// Examples:
 /// ```dart
 /// isValidDartClassName('user_profile') // Returns true ('UserProfile')
-/// isValidDartClassName('first_name') // Returns true ('FirstName') 
+/// isValidDartClassName('first_name') // Returns true ('FirstName')
 /// isValidDartClassName('123_invalid') // Returns false (starts with number)
 /// isValidDartClassName('user-profile') // Returns false (contains hyphen)
 /// ```

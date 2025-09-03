@@ -1,4 +1,3 @@
-
 // @JsonSerializable()
 class Pubspec {
   Pubspec({
@@ -6,11 +5,10 @@ class Pubspec {
     required this.supGenOption,
   });
 
- factory Pubspec.fromJson(dynamic json) {
+  factory Pubspec.fromJson(dynamic json) {
     return Pubspec(
       packageName: json['name'] as String,
-      supGenOption:
-          SupGen.fromJson(json['sup_gen_option']),
+      supGenOption: SupGen.fromJson(json['sup_gen_option']),
     );
   }
 

@@ -35,7 +35,7 @@ class DatabaseOption {
   final int port;
 
   /// Whether to use SSL/TLS for the database connection.
-  /// 
+  ///
   /// - `true`: Forces SSL connection (required for most cloud databases)
   /// - `false`: Disables SSL (typically for local development)
   /// - `null`: Uses database default SSL behavior

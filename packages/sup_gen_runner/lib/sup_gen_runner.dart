@@ -48,7 +48,7 @@
 /// ## Generated Files
 ///
 /// - `supabase_tables.gen.dart` - Database table models
-/// - `supabase_enums.gen.dart` - Database enum definitions  
+/// - `supabase_enums.gen.dart` - Database enum definitions
 /// - `supabase_view.gen.dart` - Database view models
 ///
 /// ## Database Support
@@ -108,16 +108,16 @@ class SupgenBuilder extends Builder {
   final BuilderOptions options;
 
   /// Creates a new [SupgenBuilder] instance.
-  /// 
+  ///
   /// [options] Configuration options from the build system containing
   /// user-defined settings and build context information.
   SupgenBuilder({required this.options});
 
   /// Creates an [AssetId] for the output file at the given [path].
-  /// 
+  ///
   /// [buildStep] The current build step containing package information.
   /// [path] The relative path for the generated file.
-  /// 
+  ///
   /// Returns an [AssetId] pointing to the output file location.
   static AssetId _output(BuildStep buildStep, String path) {
     return AssetId(
@@ -127,10 +127,10 @@ class SupgenBuilder extends Builder {
   }
 
   /// The core generator that handles database introspection and code generation.
-  /// 
+  ///
   /// Configured with:
   /// - `pubspec.yaml` for build configuration
-  /// - `build.yaml` for builder-specific settings  
+  /// - `build.yaml` for builder-specific settings
   /// - `.env` file for database connection parameters
   final generator = SupgenGenerator(
       pubspecFile: File('pubspec.yaml'),
@@ -138,7 +138,7 @@ class SupgenBuilder extends Builder {
       dbOption: loadDbOptionFromEnvFile(envFile: File(".env")));
 
   /// Configuration loaded from pubspec.yaml and build.yaml files.
-  /// 
+  ///
   /// Contains user-specified options like output directory, schema name,
   /// SSL settings, and other generation preferences. Will be null if
   /// configuration is invalid or missing.
@@ -151,7 +151,7 @@ class SupgenBuilder extends Builder {
   ///
   /// This method is called by the Dart build system when code generation is needed.
   /// It performs the following steps:
-  /// 
+  ///
   /// 1. Validates that configuration exists and is valid
   /// 2. Connects to the configured database
   /// 3. Introspects database schema (tables, enums, views)
@@ -211,7 +211,7 @@ class SupgenBuilder extends Builder {
   ///
   /// Generated files include:
   /// - Database table models (`supabase_tables.gen.dart`)
-  /// - Database enum definitions (`supabase_enums.gen.dart`) 
+  /// - Database enum definitions (`supabase_enums.gen.dart`)
   /// - Database view models (`supabase_view.gen.dart`)
   ///
   /// Returns an empty map if configuration is invalid, which effectively
@@ -248,5 +248,4 @@ class SupgenBuilder extends Builder {
   /// [buildStep] The current build step context
   ///
   /// Returns a new state object containing file digests for comparison.
- 
 }

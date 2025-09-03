@@ -1,5 +1,5 @@
 name: sup_gen_runner
-description: "A Dart package for generating classes, enums, and views directly from a Supabase"
+description: "A Dart build_runner package for generating classes, enums, and views directly from PostgreSQL/Supabase databases with minimal configuration."
 version: 1.4.1
 homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
@@ -32,6 +32,6 @@ topics:
  - build-runner
  - codegen
  - supabase
- - views
- - table
+ - postgresql
+ - database
  

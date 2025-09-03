@@ -33,13 +33,15 @@ Map<K, V> mergeMap<K, V>(Iterable<Map<K, V>?> maps,
   return result;
 }
 
-
 // file writer typedef
 typedef FileWriter = Future<void> Function(String contents, String path);
 // #######################################################################################################################
 
 String snakeToPascalCase(String text) {
-  return text.split('_').map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase()).join();
+  return text
+      .split('_')
+      .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
+      .join();
 }
 
 bool isValidDartClassName(String name) {

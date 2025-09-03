@@ -213,6 +213,7 @@ class TableProperty {
   /// Uses the internal [_dartType] mapping to convert PostgreSQL types
   /// to their appropriate Dart equivalents.
   String get dartType => _dartType;
+
   /// Maps PostgreSQL data types to their corresponding Dart types.
   ///
   /// This method handles the conversion from PostgreSQL column types to
