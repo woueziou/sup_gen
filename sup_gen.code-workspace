@@ -23,6 +23,12 @@
 	"settings": {
 		"editor.fontSize": 18,
 		"editor.fontFamily": "'Twilio Sans Mono', 'Fira Code'",
-		"editor.fontLigatures": true
-	}
+		"editor.fontLigatures": true,
+		"github.copilot.chat.commitMessageGeneration.instructions": [
+			
+			{
+				"text": "Use conventional commit message format. and be detailed about changes made"
+			}
+		],
+	},
 }
