@@ -1,11 +1,11 @@
 import 'dart:io';
+
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart';
 import 'package:sup_gen_runner/models/database_option.dart';
 import 'package:sup_gen_runner/src/database_helper/database_helper.dart';
 import 'package:sup_gen_runner/src/generators/functions/table_generator.dart';
 import 'package:sup_gen_runner/src/helpers/config.dart';
-import 'package:sup_gen_runner/src/helpers/utils.dart';
 
 import 'functions/enum_generator.dart';
 

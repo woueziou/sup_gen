@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:build/build.dart';
-import 'package:crypto/crypto.dart';
-import 'package:glob/glob.dart';
 import 'package:path/path.dart';
 import 'package:sup_gen_runner/src/generators/supgen_generator.dart';
 import 'package:sup_gen_runner/src/helpers/config.dart';
@@ -92,61 +90,5 @@ class SupgenBuilder extends Builder {
   /// [buildStep] The current build step context
   ///
   /// Returns a new state object containing file digests for comparison.
-  Future<_SupGenGenBuilderState> _createState(
-      Config config, BuildStep buildStep) async {
-    // Find and read the pubspec.yaml file
-    final pubspecAsset =
-        await buildStep.findAssets(Glob(config.pubspecFile.path)).single;
-
-    // Generate a digest (hash) of the pubspec file content
-    final pubspecDigest = await buildStep.digest(pubspecAsset);
-
-    // Return new state with the current file digest
-    return _SupGenGenBuilderState(pubspecDigest: pubspecDigest);
-  }
-}
-
-/// Internal state class that tracks file changes for build optimization.
-///
-/// This class stores digests (hashes) of important configuration files to detect
-/// when they change. By comparing digests between builds, the system can skip
-/// expensive code generation when nothing has changed, making builds much faster.
-///
-/// The state-based approach ensures that code is only regenerated when necessary,
-/// such as when:
-/// - Configuration files are modified
-/// - Database schema changes
-/// - Generator settings are updated
-class _SupGenGenBuilderState {
-  /// Creates a new builder state with the specified file digest.
-  ///
-  /// [pubspecDigest] A cryptographic hash of the pubspec.yaml file content
-  const _SupGenGenBuilderState({
-    required this.pubspecDigest,
-  });
-
-  /// Cryptographic digest (hash) of the pubspec.yaml file.
-  ///
-  /// This digest is used to detect when the configuration file changes.
-  /// When the content changes, the digest will be different, triggering
-  /// code regeneration.
-  final Digest pubspecDigest;
-
-  /// Determines whether code generation can be skipped for this build.
-  ///
-  /// This method implements the core optimization logic by comparing the current
-  /// state with the previous build state. Code generation is skipped when:
-  /// - The pubspec.yaml file hasn't changed (same digest)
-  /// - No other relevant configuration has been modified
-  ///
-  /// [previous] The state from the previous build, or null for first build
-  ///
-  /// Returns true if generation can be skipped, false if regeneration is needed.
-  bool shouldSkipGenerate(_SupGenGenBuilderState? previous) {
-    // Always generate on first build (no previous state)
-    if (previous == null) return false;
-
-    // Skip generation if pubspec.yaml hasn't changed
-    return pubspecDigest == previous.pubspecDigest;
-  }
+ 
 }

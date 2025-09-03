@@ -1,4 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
 
 // @JsonSerializable()
 class Pubspec {
@@ -22,10 +21,7 @@ class Pubspec {
     );
   }
 
-  @JsonKey(name: 'name', required: true)
   final String packageName;
-
-  @JsonKey(name: 'sup_gen_option', required: true)
   final SupGen supGenOption;
 }
 
