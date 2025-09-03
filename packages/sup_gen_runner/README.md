@@ -4,9 +4,36 @@ A Dart package for generating classes, enums, and views directly from a Supabase
 
 ## Features
 
-- Automatically generate Dart classes from PostgreSQL tables.
-- Replicate enum types and views from the `public` schema or a specified schema.
-- Easy configuration and seamless integration.
+SupGen provides a comprehensive solution for generating Dart classes from PostgreSQL database schemas with minimal configuration and maximum flexibility.
+
+### No Supabase CLI Required
+SupGen operates independently of the Supabase CLI, requiring only direct database access. This eliminates the need for additional tooling installations and simplifies the development workflow by working directly with your database connection.
+
+### Full PostgreSQL Compatibility
+SupGen supports any PostgreSQL-compatible database, including:
+- Supabase hosted databases
+- Self-managed PostgreSQL instances
+- Local development databases
+- Cloud-hosted PostgreSQL services
+
+### Minimal Access Requirements
+The package requires only database read access to function. No API keys, authentication tokens, or complex cloud provider configurations are necessary. Simply provide database credentials through environment variables.
+
+### Configurable Schema Introspection
+SupGen allows you to specify which database schema to introspect, providing flexibility for projects with multiple schemas. Whether you need the default `public` schema or a custom schema like `auth` or `extensions`, the package adapts to your database structure.
+
+### Streamlined Configuration
+The package features a minimal configuration approach:
+- Simple `pubspec.yaml` configuration section
+- Environment variables for database credentials
+- No complex setup procedures or extensive configuration files
+
+### Comprehensive Code Generation
+- **Table-to-Class Mapping**: Automatically generates Dart classes from database tables with proper type mapping
+- **Enum Support**: Converts PostgreSQL enum types to Dart enums with appropriate string value getters
+- **View Support**: Generates classes for database views with the same functionality as table classes
+- **JSON Serialization**: Includes `fromJson()` factory constructors for seamless data deserialization
+- **Freezed Support**: Integration with the [freezed](https://pub.dev/packages/freezed) package for immutable data classes *(coming soon)*
 
 ## Installation
 

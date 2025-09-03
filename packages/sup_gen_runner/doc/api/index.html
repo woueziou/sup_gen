@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="sup_gen_runner API docs, for the Dart programming language.">
+  <title>sup_gen_runner - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/woueziou/sup_gen.git">sup_gen_runner package</a></li>
+  </ol>
+  <div class="self-name">sup_gen_runner</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="supgen-supabase-dart-class-generator">SupGen (Supabase Dart Class Generator)</h1>
+<p>A Dart package for generating classes, enums, and views directly from a Supabase PostgreSQL server. Simplify the process of integrating your database schema into your Dart/Flutter projects.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Automatically generate Dart classes from PostgreSQL tables.</li>
+<li>Replicate enum types and views from the <code>public</code> schema or a specified schema.</li>
+<li>Easy configuration and seamless integration.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="1-add-the-package-to-your-project">1. Add the package to your project</h3>
+<p>Add the following to your <code>pubspec.yaml</code> file:</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  sup_gen_runner: ^&lt;latest_version&gt;
+dev_dependencies:
+  build_runner: ^2.3.3
+</code></pre>
+<p>Replace <strong>&lt;latest_version&gt;</strong> with the latest version of the package.</p>
+<p>Run the following command to fetch the pacakge</p>
+<pre class="language-bash"><code class="language-bash">flutter pub get
+# or
+dart pub get
+</code></pre>
+<h3 id="2-configure-your-project">2. Configure your project</h3>
+<h5 id="add-configration-to-pubspecyml">Add configration to pubspec.yml</h5>
+<h1 id=""></h1>
+<pre class="language-yaml"><code class="language-yaml">sup_gen_option:
+  output: lib/supabase_models #the desired output folder 
+  enable: true # Enable or disable the package 
+  schema: 'public' #The schema that will be used
+  useSsl: false # control if the ssl is required for the server or no
+</code></pre>
+<h5 id="add-env-file">Add .env file</h5>
+<h1 id="-2"></h1>
+<p>include you Supabase database credential</p>
+<pre class="language-env"><code class="language-env"># .env file
+SUPABASE_DB_USER=postgres
+SUPABASE_DB_HOST=DB_HOST
+SUPABASE_DB_PORT=DB_PORT
+SUPABASE_DB_PASSWORD=YOUR_DB_PASSWORD
+SUPABASE_DB_SCHEMA=public
+SUPABASE_DB=YOUR_DATABASE_NAME
+</code></pre>
+<p>⚠️ Important: Keep your .env file secure. Do not commit it to version control. You don't want to give the key of you home to the world</p>
+<h3 id="3-generate-classes">3. Generate classes</h3>
+<pre class="language-bash"><code class="language-bash">dart run build_runner build
+</code></pre>
+<p>You will see in your output folder some files:</p>
+<ul>
+<li>supabase_enums.gen.dart  // for enums</li>
+<li>supabase_tables.gen.dart // for tables</li>
+</ul>
+<h2 id="roadmap">Roadmap</h2>
+<p><code>x</code> Setup project</p>
+<p><code>x</code> Write SQL Queries</p>
+<p><code>x</code> Write Colum type adapters</p>
+<p><code>x</code> handle Table mapping</p>
+<p><code>x</code> handle Enums mapping</p>
+<p><code>x</code> Handle views mapping</p>
+<p><code>x</code> handle Enum reverse target : get enum value string name</p>
+<p><code> </code> Handle Edge functions mapping</p>
+<p><code> </code> Setup test cases</p>
+<p><code> </code> Handle RPC mapping</p>
+<p><code> </code>  Add  <a href="https://pub.dev/packages/freezed">freezed</a> support to classes</p>
+<p><code> </code> Add json_annotation</p>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+<p>Copyright (c) 2024 Taas Ekpaye</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="string_extension">
+  <span class="name"><a href="string_extension/">extensions/string_extension</a></span> 
+
+</dt>
+<dd>String utility functions for case conversion and validation.
+</dd>
+
+          <dt id="database_option">
+  <span class="name"><a href="models_database_option/">models/database_option</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="enum_model">
+  <span class="name"><a href="models_enum_model/">models/enum_model</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="pubspec">
+  <span class="name"><a href="models_pubspec_pubspec/">models/pubspec/pubspec</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="table_model">
+  <span class="name"><a href="models_table_model/">models/table_model</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="sup_gen_runner">
+  <span class="name"><a href="sup_gen_runner/">sup_gen_runner</a></span> 
+
+</dt>
+<dd>SupGen - Supabase/PostgreSQL Dart Class Generator
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://github.com/woueziou/sup_gen.git">sup_gen_runner package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">sup_gen_runner</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="string_extension/">extensions/string_extension</a></li>
+      <li><a href="models_database_option/">models/database_option</a></li>
+      <li><a href="models_enum_model/">models/enum_model</a></li>
+      <li><a href="models_pubspec_pubspec/">models/pubspec/pubspec</a></li>
+      <li><a href="models_table_model/">models/table_model</a></li>
+      <li><a href="sup_gen_runner/">sup_gen_runner</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    sup_gen_runner
+      1.4.1
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

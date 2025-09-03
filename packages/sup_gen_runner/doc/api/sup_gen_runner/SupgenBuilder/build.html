@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the build method from the SupgenBuilder class, for the Dart programming language.">
+  <title>build method - SupgenBuilder class - sup_gen_runner library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">sup_gen_runner</a></li>
+    <li><a href="../../sup_gen_runner/">sup_gen_runner.dart</a></li>
+    <li><a href="../../sup_gen_runner/SupgenBuilder-class.html">SupgenBuilder</a></li>
+    <li class="self-crumb">build method</li>
+  </ol>
+  <div class="self-name">build</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="sup_gen_runner&#47;SupgenBuilder-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">build</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+<span class="name ">build</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="build-param-buildStep"><span class="type-annotation"><a href="https://pub.dev/documentation/build/2.5.4/build/BuildStep-class.html">BuildStep</a></span> <span class="parameter-name">buildStep</span></span></li>
+</ol>)
+
+      <div class="features"><span class="feature">override</span></div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Executes the code generation process.</p>
+<p>This method is called by the Dart build system when code generation is needed.
+It performs the following steps:</p>
+<ol>
+<li>Validates that configuration exists and is valid</li>
+<li>Connects to the configured database</li>
+<li>Introspects database schema (tables, enums, views)</li>
+<li>Generates corresponding Dart code files</li>
+<li>Writes the generated files to the specified output directory</li>
+</ol>
+<p>The method generates multiple files:</p>
+<ul>
+<li><code>supabase_tables.gen.dart</code> - Database table models</li>
+<li><code>supabase_enums.gen.dart</code> - Database enum definitions</li>
+<li><code>supabase_view.gen.dart</code> - Database view models</li>
+</ul>
+<p><code>buildStep</code> The build context provided by the build system, containing
+input information and methods to write output files.</p>
+<p>Returns a <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a> that completes when code generation is finished.
+Will return early if configuration is invalid.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+Future&lt;void&gt; build(BuildStep buildStep) async {
+  &#47;&#47; Step 1: Validate configuration exists
+  if (_config == null) {
+    return;
+  }
+
+  stdout.writeln(
+      &#39;[SUPGEN] Starting generating... ${options.config[&quot;output&quot;]} &#39;);
+
+  final result = await generator.build(
+    config: _config,
+  );
+  &#47;&#47; final id = _output(buildStep, &quot;supabase_models&quot;);
+  for (final file in result) {
+    try {
+      final path = file[&#39;path&#39;] as String;
+      final contents = file[&#39;content&#39;] as String;
+
+      stdout.writeln(&#39;[SUPGEN] Generated: $path&#39;);
+      buildStep.writeAsString(_output(buildStep, path), contents);
+    } catch (e) {
+      print(&quot;An error occured&quot;);
+    } finally {
+      stdout.writeln(&quot;Finally block executed&quot;);
+    }
+  }
+  stdout.writeln(&#39;[SUPGEN] Generated: ${result.length} files&#39;);
+  stdout.writeln(&#39;[SUPGEN] Finished generating.&#39;);
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">sup_gen_runner</a></li>
+    <li><a href="../../sup_gen_runner/">sup_gen_runner</a></li>
+    <li><a href="../../sup_gen_runner/SupgenBuilder-class.html">SupgenBuilder</a></li>
+    <li class="self-crumb">build method</li>
+</ol>
+
+    <h5>SupgenBuilder class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    sup_gen_runner
+      1.4.1
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

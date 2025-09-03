@@ -6,14 +6,7 @@ class Pubspec {
     required this.supGenOption,
   });
 
-  // factory Pubspec.fromJson(Map json) => _$PubspecFromJson(json);
-
-  /// Creates a Pubspec instance from a JSON map.
-  ///
-  /// [json] A map containing the pubspec configuration data
-  ///
-  /// Returns a new Pubspec instance with the parsed data.
-  factory Pubspec.fromJson(dynamic json) {
+ factory Pubspec.fromJson(dynamic json) {
     return Pubspec(
       packageName: json['name'] as String,
       supGenOption:
