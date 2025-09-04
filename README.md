@@ -20,7 +20,7 @@ Add the following to your `pubspec.yaml` file:
 ```yaml
 dev_dependencies:
   build_runner: ^2.4.6
-  sup_gen_runner: ^1.3.0
+  sup_gen_runner: <latest>
 ```
 
 > **Note**: `sup_gen_runner` should be added to `dev_dependencies` as it's a code generation tool.

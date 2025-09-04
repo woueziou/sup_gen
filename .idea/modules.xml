@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/apps/project_test/melos_project_test.iml" filepath="$PROJECT_DIR$/apps/project_test/melos_project_test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/packages/sup_gen_runner/melos_sup_gen_runner.iml" filepath="$PROJECT_DIR$/packages/sup_gen_runner/melos_sup_gen_runner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/melos_sup_gen_repository.iml" filepath="$PROJECT_DIR$/melos_sup_gen_repository.iml" />
+<module fileurl="file://$PROJECT_DIR$/melos_sup_gen.iml" filepath="$PROJECT_DIR$/melos_sup_gen.iml" />
     </modules>
   </component>
 </project>

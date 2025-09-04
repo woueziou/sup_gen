@@ -1,7 +1,6 @@
-name: sup_gen_repository
+name: sup_gen
 
 packages:
-  - apps/**
   - packages/**
 
 

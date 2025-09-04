@@ -16,7 +16,10 @@ class SupgenGenerator {
   final String outputTableFilesName = "supabase_tables.gen.dart";
   final String outputViewFilesName = "supabase_view.gen.dart";
   final String outputEnums = "supabase_enums.gen.dart";
-  final formatter = DartFormatter(pageWidth: 80, lineEnding: '\n');
+  final formatter = DartFormatter(
+      pageWidth: 80,
+      lineEnding: '\n',
+      languageVersion: DartFormatter.latestLanguageVersion);
 
   SupgenGenerator(
       {required this.pubspecFile, this.buildFile, required this.dbOption});
