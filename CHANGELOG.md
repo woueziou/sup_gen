@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`sup_gen_runner` - `v1.5.2`](#sup_gen_runner---v152)
+
+---
+
+#### `sup_gen_runner` - `v1.5.2`
+
+ - **FIX**: update Dart SDK version and refine dependencies.
+
+
+## 2025-09-04
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`sup_gen_runner` - `v1.5.1`](#sup_gen_runner---v151)
 
 ---

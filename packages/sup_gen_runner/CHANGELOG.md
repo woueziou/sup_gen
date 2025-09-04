@@ -1,3 +1,7 @@
+## 1.5.2
+
+ - **FIX**: update Dart SDK version and refine dependencies.
+
 ## 1.5.1
 
  - **REFACTOR**: remove Windows runner files and Flutter CMake configurations.
