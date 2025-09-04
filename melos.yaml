@@ -1,4 +1,4 @@
-name: sup_gen
+name: sup_gen_repository
 
 packages:
   - packages/**

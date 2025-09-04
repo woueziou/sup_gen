@@ -1,6 +1,6 @@
 //################################################## copied from https://github.com/FlutterGen/flutter_gen ##################################################
 /// Exposes the [mergeMap] function, which... merges Maps.
-_copyValues<K, V>(
+void _copyValues<K, V>(
     Map<K, V> from, Map<K, V> to, bool recursive, bool acceptNull) {
   for (final key in from.keys) {
     if (from[key] is Map<K, V> && recursive) {

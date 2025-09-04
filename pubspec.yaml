@@ -11,6 +11,27 @@ environment:
   sdk: ^3.9.0
 
 # Add regular dependencies here.
+workspace:
+  - packages/sup_gen_runner
 
 dev_dependencies:
   melos: ^7.1.0
+
+
+melos:
+  scripts:
+    analyze:
+      exec: dart analyze .
+    gen:build_runner:
+      exec: dart run build_runner build --delete-conflicting-outputs
+      packageFilters:
+        # ignore:
+        #   - example
+        #   - example_resources
+        dependsOn: build_runner
+      description: dart run build_runner build --delete-conflicting-outputs
+    get:
+      run: flutter pub get
+      exec:
+        concurrency: 2
+      description: flutter pub get

@@ -11,3 +11,4 @@ apps/project_test/.env
 packages/sup_gen_runner/.env
 .idea/*
 melos_sup_gen.iml
+packages/sup_gen_runner/melos_sup_gen_runner.iml

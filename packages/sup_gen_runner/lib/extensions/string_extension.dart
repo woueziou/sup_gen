@@ -1,11 +1,3 @@
-/// String utility functions for case conversion and validation.
-///
-/// This library provides helper functions for converting between different
-/// naming conventions commonly used in database-to-code generation:
-/// - snake_case (database naming)
-/// - PascalCase (Dart class names)
-/// - camelCase (Dart property names)
-library string_extension;
 
 /// Converts a snake_case string to PascalCase.
 ///

@@ -5,9 +5,11 @@ homepage: https://github.com/woueziou/sup_gen.git
 repository: https://github.com/woueziou/sup_gen.git
 issue_tracker: https://github.com/woueziou/sup_gen/issues
 
+resolution: workspace
+
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.9.0
 
 dependencies:
   build: ^4.0.0
