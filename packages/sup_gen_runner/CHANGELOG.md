@@ -1,3 +1,9 @@
+## 1.5.1
+
+ - **REFACTOR**: remove Windows runner files and Flutter CMake configurations.
+ - **REFACTOR**: update concurrency for flutter pub get and remove unused .iml files.
+ - **FIX**: update sup_gen_runner dependency version.
+
 ## 1.5.0
 
  - **FEAT**: enhance example and documentation for SupGen.

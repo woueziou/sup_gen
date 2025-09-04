@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-09-04
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sup_gen_runner` - `v1.5.1`](#sup_gen_runner---v151)
+
+---
+
+#### `sup_gen_runner` - `v1.5.1`
+
+ - **REFACTOR**: remove Windows runner files and Flutter CMake configurations.
+ - **REFACTOR**: update concurrency for flutter pub get and remove unused .iml files.
+ - **FIX**: update sup_gen_runner dependency version.
+
+
 ## 2025-09-03
 
 ### Changes
