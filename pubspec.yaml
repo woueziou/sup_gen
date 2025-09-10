@@ -21,9 +21,9 @@ dev_dependencies:
 melos:
   scripts:
     analyze:
-      exec: puro dart analyze .
+      exec: dart analyze .
     gen:build_runner:
-      exec: puro dart run build_runner build --delete-conflicting-outputs
+      exec: dart run build_runner build --delete-conflicting-outputs
       packageFilters:
         # ignore:
         #   - example
@@ -31,7 +31,7 @@ melos:
         dependsOn: build_runner
       description: puro dart run build_runner build --delete-conflicting-outputs
     get:
-      run: puro flutter pub get
+      run: flutter pub get
       exec:
         concurrency: 2
       description: flutter pub get
