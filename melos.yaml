@@ -8,9 +8,9 @@ packages:
 
 scripts:
   analyze:
-    exec: puro dart analyze .
+    exec:  dart analyze .
   gen:build_runner:
-    exec: puro dart run build_runner build --delete-conflicting-outputs
+    exec:  dart run build_runner build --delete-conflicting-outputs
     packageFilters:
       # ignore:
       #   - example

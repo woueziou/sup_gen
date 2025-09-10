@@ -20,6 +20,8 @@ dev_dependencies:
 
 melos:
   scripts:
+    publish:
+      exec: puro dart publish --dry-run  
     analyze:
       exec: dart analyze .
     gen:build_runner:
