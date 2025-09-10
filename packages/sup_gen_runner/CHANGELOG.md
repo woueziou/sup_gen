@@ -1,3 +1,7 @@
+## 1.5.3
+
+ - **REFACTOR**: update command execution in configuration files.
+
 ## 1.5.2
 
  - **FIX**: update Dart SDK version and refine dependencies.

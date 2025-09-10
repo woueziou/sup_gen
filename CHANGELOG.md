@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-09-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sup_gen_runner` - `v1.5.3`](#sup_gen_runner---v153)
+
+---
+
+#### `sup_gen_runner` - `v1.5.3`
+
+ - **REFACTOR**: update command execution in configuration files.
+
+
 ## 2025-09-04
 
 ### Changes
