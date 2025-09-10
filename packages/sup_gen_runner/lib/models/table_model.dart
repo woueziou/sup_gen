@@ -84,11 +84,17 @@ class TableModel {
     buffer.writeln("return $className(");
     for (var element in properties) {
       if (element.type == 'json' || element.type == 'jsonb') {
-        final command = '''
+        final command =
+            '''
 jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
 ''';
-        buffer.writeln(
-            "${element.dartName}: json['${element.name}'] != null ? $command: null,");
+        if (element.isNullable) {
+          buffer.writeln(
+            "${element.dartName}: json['${element.name}'] != null ? $command: null,",
+          );
+        } else {
+          buffer.writeln("${element.dartName}: $command,");
+        }
       } else {
         buffer.writeln("${element.dartName}: json['${element.name}'],");
       }
@@ -116,7 +122,8 @@ jsonDecode(json['${element.name}'].toString()) as Map<String, dynamic>
       buffer.writeln('  $className({');
       for (final prop in properties) {
         buffer.writeln(
-            ' ${prop.isNullable ? "" : "required"}   this.${prop.dartName},');
+          ' ${prop.isNullable ? "" : "required"}   this.${prop.dartName},',
+        );
       }
       buffer.writeln('});');
 
@@ -236,14 +243,14 @@ class TableProperty {
       case "float4" || "real" || "float8" || "double precision":
         return 'double';
       case 'integer' ||
-            'int4' ||
-            'int' ||
-            'int2' ||
-            'int8' ||
-            'bigint' ||
-            'smallint' ||
-            'serial' ||
-            'bigserial':
+          'int4' ||
+          'int' ||
+          'int2' ||
+          'int8' ||
+          'bigint' ||
+          'smallint' ||
+          'serial' ||
+          'bigserial':
         return 'int';
 
       case 'numeric':
@@ -255,12 +262,12 @@ class TableProperty {
       case '_text':
         return 'List<String>';
       case 'text' ||
-            'uuid' ||
-            'character varying' ||
-            'varchar' ||
-            'timestamp' ||
-            'timestamptz' ||
-            'date':
+          'uuid' ||
+          'character varying' ||
+          'varchar' ||
+          'timestamp' ||
+          'timestamptz' ||
+          'date':
         return 'String';
       case 'json':
         return 'Map<String, dynamic>';
